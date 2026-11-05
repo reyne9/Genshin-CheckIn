@@ -31,7 +31,7 @@
 우측 상단의 **`Fork`** 버튼을 눌러 본인의 GitHub 계정으로 복제합니다.
 
 ### 2단계: HoYoLAB 쿠키 추출하기
-1. PC 웹 브라우저(Chrome, Edge 등)에서 [호요랩 원신 출석체크 페이지](https://act.hoyolab.com/ys/event/e202102251931481/index.html)에 접속하여 로그인합니다.
+1. PC 웹 브라우저(Chrome, Edge 등)에서 [호요랩 원신 출석체크 페이지](https://act.hoyolab.com/ys/event/signin-sea-v3/index.html?act_id=e202102251931481&hyl_auth_required=true&hyl_presentation_style=fullscreen&lang=ko-kr&utm_source=hoyolab&utm_medium=tools)에 접속하여 로그인합니다.
 2. 키보드의 **`F12`** 키를 눌러 **개발자 도구**를 엽니다.
 3. 상단 탭에서 **`애플리케이션(Application)`** (또는 `스토리지`) $\rightarrow$ 좌측 **`쿠키(Cookies)`** $\rightarrow$ `https://act.hoyolab.com`을 클릭합니다.
 4. 쿠키 목록 중 아래 두 항목의 값을 확인합니다:
