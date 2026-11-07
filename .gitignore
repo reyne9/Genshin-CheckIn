@@ -1,43 +1,26 @@
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-
-# Virtual Environments
+# 가상환경 폴더 제외
 .venv/
-venv/
-env/
-ENV/
 
-# Environment Variables & Sensitive Credentials (CRITICAL)
+# 환경변수 파일 제외
 .env
-.env.local
-.env.*.local
-*.env
-!*.env.example
 
-# Logs
-*.log
-logs/
-
-# IDE & OS
+# 맥 OS 시스템 파일 제외
 .DS_Store
-.idea/
-.vscode/
+
+# 파이썬 캐시 파일 제외
+__pycache__/
+
+
+<!--
+
+.DS_Store(Desktop Services Store) 파일은 macOS에서 Finder가 폴더를 자동으로 열 때마다 자동으로 생성하는 파일
+아이콘 위치, 윈도우 크기, 보기 옵션 등 폴더의 사용자 정의 설정을 저장하는 데 사용됨
+다른 사람과 굳이 공유할 필요 없음
+
+__pycache__/ (파이썬 캐시 폴더)
+파이썬이 코드를 실행할 떄 자동으로 만드는 폴더 (안에 .pyc 파일이 들어있음)
+사람이 작성한 코드(.py)를 컴퓨터가 더 빨리 읽을 수 있도록 미리 번역해 둔 복사본
+다음번에 실행할 떄 속도를 높이기 위해 만드는 파일
+
+
+-->
