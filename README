@@ -1,21 +1,71 @@
-# 원신체크인(Genshin-checkIn)
+# 원신체크인 (Genshin-CheckIn)
 
-스마트폰에 호요랩 설치하기 싫지만, 매일 웹에서 호요랩에서 출석체크하기 귀찮은 당신!
-당신을 위한 앱입니다.
+스마트폰에 호요랩 설치하기 싫지만, 매일 웹에서 호요랩 출석체크하기 귀찮은 당신!  
+당신을 위한 원신 웹 일일 출석체크 자동화 앱입니다.
+
+---
+
+## 주요 기능
+
+- **간편한 웹 출석체크**: 게임을 켜거나 스마트폰 앱을 설치하지 않고 호요랩(HoYoLAB) 웹 출석을 자동으로 처리합니다.
+- **안전한 인증 분리**: 개인 로그인 쿠키(`ltoken_v2`, `ltuid_v2`)는 코드에 직접 적지 않고 `.env` 파일로 분리하여 안전하게 관리합니다.
+
+---
 
 ## 설치 및 실행 방법
 
+### 1. 저장소 복제 및 패키지 설치
+
 ```bash
+git clone https://github.com/reyne9/hoyolab-auto-checkin.git
+cd Genshin-CheckIn
 
-1. 브라우저에서 호요랩 로그인
+# 가상환경 생성 및 활성화
+python3 -m venv .venv
+source .venv/bin/activate
 
-2. 쿠키 정보 복사
-
-# 실행
+# 필수 라이브러리 설치
+pip install requests python-dotenv
 ```
 
+### 2. 호요랩(HoYoLAB) 쿠키 정보 복사
+
+1. PC 웹 브라우저(Chrome, Whale, Edge 등)에서 [호요랩 원신 출석체크 페이지](https://act.hoyolab.com/ys/event/signin-sea-v3/index.html?act_id=e202102251931481&hyl_auth_required=true&hyl_presentation_style=fullscreen&lang=ko-kr)에 접속해 로그인합니다.
+2. 개발자 도구를 엽니다.
+   - **Mac**: `Command (⌘) + Option (⌥) + I` (또는 우클릭 $\rightarrow$ `검사`)
+   - **Windows**: `F12`
+3. 상단 메뉴에서 **`Application` (애플리케이션)** 탭 $\rightarrow$ 왼쪽 **`Cookies` (쿠키)** $\rightarrow$ `https://act.hoyolab.com` (또는 `https://www.hoyolab.com`)을 클릭합니다.
+4. 상단 `Filter (필터)` 창에 `lt`를 입력하여 아래 두 가지 값을 찾습니다 (**도메인이 `.hoyolab.com`인 항목**을 선택하세요):
+   - `ltoken_v2`: `v2_...`로 시작하는 인증 토큰 값
+   - `ltuid_v2`: 숫자로 된 호요랩 통행증 ID
+
+### 3. `.env` 파일 생성
+
+프로젝트 폴더 안에 `.env` 파일을 만들고, 복사한 쿠키 정보를 아래 형식으로 입력한 뒤 저장합니다.
+
+```env
+HOYOLAB_COOKIES="ltoken_v2=여기에_복사한_ltoken_v2_값; ltuid_v2=여기에_복사한_ltuid_v2_값;"
+```
+
+> ⚠️ **주의**: `.env` 파일에는 개인 로그인 인증 정보가 들어 있으므로 절대 GitHub 등 외부에 공개하거나 커밋하지 마세요. (`.gitignore`에 의해 자동으로 제외됩니다.)
+
+### 4. 실행
+
+```bash
+.venv/bin/python my_checkin.py
+```
+
+---
+
 ## 기술 스택
-- 
+
+- **Language**: Python 3
+- **Libraries**:
+  - `requests`: 호요랩 출석체크 REST API 통신 (`GET` / `POST`)
+  - `python-dotenv`: 민감한 환경변수(`.env`) 로드 및 보안 분리
+
+---
 
 ## 라이선스
+
 MIT License
