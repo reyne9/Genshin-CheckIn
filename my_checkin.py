@@ -14,3 +14,11 @@ headers = {"Cookie": my_cookie, "User-Agent": "Mozilla/5.0"}
 # 3. 서버에 요청 보내고 결과 출력하기
 res = requests.get(url, params=params, headers=headers)
 print(res.json())
+
+sign_url = "https://sg-hk4e-api.hoyolab.com/event/sol/sign"
+
+sign_res = requests.post(sign_url, params=params, headers=headers)
+# 4. 오늘 출석 도장 찍기 (POST 요청)
+sign_url = "https://sg-hk4e-api.hoyolab.com/event/sol/sign"
+sign_res = requests.post(sign_url, params={"lang": "ko-kr"}, json={"act_id": "e202102251931481"}, headers=headers)
+print(sign_res.json())
