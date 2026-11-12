@@ -62,7 +62,8 @@ HOYOLAB_COOKIES="ltoken_v2=여기에_복사한_ltoken_v2_값; ltuid_v2=여기에
 - **Language**: Python 3
 - **Libraries**:
   - `requests`: 호요랩 출석체크 REST API 통신 (`GET` / `POST`)
-  - `python-dotenv`: 민감한 환경변수(`.env`) 로드 및 보안 분리
+  - `load-dotenv`: 민감한 환경변수(`.env`) 로드 및 보안 분리
+  - 
 
 webhook
 
