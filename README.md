@@ -61,14 +61,23 @@
 우측 상단의 **`Fork`** 버튼을 눌러 이 저장소를 본인의 GitHub 계정으로 복제합니다.
 
 ### 2. GitHub Secrets에 인증 정보 등록
-복제한 본인 저장소의 **`Settings`** $\rightarrow$ **`Secrets and variables`** $\rightarrow$ **`Actions`** $\rightarrow$ **`New repository secret`** 버튼을 눌러 아래 항목을 추가합니다.
 
-| Name (이름) | Value (값) | 필수 여부 |
+> 💡 **왜 등록해야 하나요?**  
+> 로컬의 `.env` 파일은 보안을 위해 `.gitignore`로 차단되어 GitHub에 업로드되지 않습니다. 따라서 GitHub 클라우드 서버가 쿠키와 웹후크를 읽을 수 있도록 GitHub Secrets(비밀 금고)에 값을 직접 등록해 주어야 합니다.
+
+1. 복제한 본인 저장소의 **`Settings`** $\rightarrow$ **`Secrets and variables`** $\rightarrow$ **`Actions`**로 이동합니다.
+2. 상단 탭이 **`Secrets`**인지 확인한 뒤(`Variables` 탭이 아님), **`Repository secrets`** 영역의 **`New repository secret`** 버튼을 클릭합니다. (`Environment secrets`가 아닙니다.)
+3. 아래 항목을 하나씩 정확히 등록합니다.
+
+| Name (이름) | Secret (값) | 필수 여부 |
 | :--- | :--- | :---: |
 | `HOYOLAB_COOKIES` | `ltoken_v2=복사한_값; ltuid_v2=복사한_값;` | 필수 |
-| `DISCORD_WEBHOOK` | 복사한 디스코드 웹후크 URL | 선택 |
+| `DISCORD_WEBHOOK` | `https://discord.com/api/webhooks/복사한_값` | 선택 |
 
-> ⚠️ **주의**: 개인 로그인 쿠키와 웹후크 주소는 절대 코드나 공개 파일에 직접 적지 말고 반드시 **GitHub Secrets**에만 등록하세요.
+> ⚠️ **주의사항**:
+> - **`Secret` 입력란에 양쪽 큰따옴표(`"`)를 넣지 마세요!** `.env` 파일과 달리 GitHub Secrets는 입력한 문자열 그대로를 환경변수로 전달합니다.
+> - `Name`의 대소문자와 철자(`HOYOLAB_COOKIES`, `DISCORD_WEBHOOK`)가 정확히 일치해야 하며, 누락될 경우 `HOYOLAB_COOKIES 환경변수가 설정되지 않았습니다.` 오류(`exit code 1`)가 발생합니다.
+> - 개인 로그인 쿠키와 웹후크 주소는 절대 코드나 공개 파일에 직접 적지 말고 반드시 **GitHub Secrets**에만 등록하세요.
 
 ### 3. 원하는 실행 시간/주기 설정 (`cron` 수정)
 [`.github/workflows/checkin.yml`](.github/workflows/checkin.yml) 파일의 `cron` 값을 수정하여 실행 시간이나 주기를 바꿀 수 있습니다.
